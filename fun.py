@@ -61,7 +61,7 @@ def run2(x,y):
     x = complex(a,b)[0] + c
     y = complex(a,b)[1] + d
     count += 1
-  if (x)**2 + (y)**2 <= 2:
+  if (x)**2 + (y)**2 <= 5:
     return True
   return False
 
