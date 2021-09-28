@@ -15,7 +15,7 @@ def run2(x,y):
   c=x
   d=y
   try:
-    while count < 1000:
+    while count < 900:
       a=x
       b=y
       x = complexy(a,b)[0] + c
@@ -27,14 +27,24 @@ def run2(x,y):
 
 
 # Calculates all of the points that are in the Mandelbrot Set, 
-# seperates them into real and imaginary parts and returns both parts.
+# and seperates them into real and imaginary parts and returns both parts.
 def calculate():
+  m = 200
+  u = -1.2
+  i = 1.2
+  o = -2.4
+  p = 0.5
+  thingy = round((m**2 * ((i-u)*(p-o)))/100,0)
   a=[]
   b=[]
-  for x,y in itertools.product(range(-400, 102), range(-240, 242)):
-    if run2(x/200,y/200):
-      a.append(x/200)
-      b.append(y/200)
+  counter=0
+  for x,y in itertools.product(range(int(o*m), int(p*m)), range(int(u*m), int(i*m))):
+    if run2(x/m,y/m):
+      a.append(x/m)
+      b.append(y/m)
+    if round(counter/thingy, 0) != round((counter+1)/thingy, 0):
+      print(round(counter/thingy, 0))
+    counter += 1
   return a,b
       
 # Graphs the Mandelbrot Set  
@@ -42,7 +52,7 @@ plt.style.use('bmh')
 a, b = calculate()
 plt.scatter(a, b, color='red', marker='o', s=0.1)
 plt.ylim(-1.2, 1.2)
-plt.xlim(-2.0, 0.5)
+plt.xlim(-2.4, 0.5)
 plt.xlabel('Real')
 plt.ylabel('Imaginary')
 plt.title('Mandelbrot Set')
